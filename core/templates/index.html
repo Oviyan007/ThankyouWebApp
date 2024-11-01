@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Event!</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div id="input-section">
+                <div class="input-group">
+                    <label for="nameInput">Enter your name:</label>
+                    <input type="text" id="nameInput" name="Uname" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="phoneInput">Enter your Phone number:</label>
+                    <input type="number" id="phoneInput" name="Uphone" placeholder="Your Phone number" required>
+                </div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
